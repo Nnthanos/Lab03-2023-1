@@ -9,7 +9,7 @@ public class ListaLigada implements EstruturaElementar{
 
     public ListaLigada() {
         this.cabeca = null;
-        this.indice = 0;
+        this.indice = -1;
     }
 
     @Override
@@ -27,8 +27,14 @@ public class ListaLigada implements EstruturaElementar{
 
     @Override
     public int buscaIndice(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscaIndice'");
+        No no = cabeca;
+        if (indice >= valor){
+            for (int i = 0; i < valor; i++){
+                no = no.getProximo();
+            }
+            return no.getValor();
+        }
+        return -1;
     }
 
     @Override
@@ -81,8 +87,16 @@ public class ListaLigada implements EstruturaElementar{
 
     @Override
     public void insereFim(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insereFim'");
+        if (cabeca == null){
+            cabeca = new No(valor);
+        } else {
+            No no = cabeca;
+            for(int i = 0; i < indice; i++){
+                no = no.getProximo();
+            }
+            no.setProximo(new No(valor));
+        }
+        indice += 1;
     }
 
     @Override
