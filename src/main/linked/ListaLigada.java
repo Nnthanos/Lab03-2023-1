@@ -71,14 +71,28 @@ public class ListaLigada implements EstruturaElementar {
 
     @Override
     public int predecessor(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'predecessor'");
+        if (indice >= valor && indice >= 1) {
+            No no = cabeca;
+            for (int i = 0; i < valor - 1; i++) {
+                no = no.getProximo();
+            }
+            return no.getValor();
+        } else {
+            return -1;
+        }
     }
 
     @Override
     public int sucessor(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'sucessor'");
+        if (indice >= valor + 1 && indice > 0) {
+            No no = cabeca;
+            for (int i = 0; i < valor + 1; i++) {
+                no = no.getProximo();
+            }
+            return no.getValor();
+        } else {
+            return -1;
+        }
     }
 
     @Override
@@ -180,8 +194,8 @@ public class ListaLigada implements EstruturaElementar {
                 no = no.getProximo();
             }
             no.setProximo(null);
+            indice -= 1;
         }
-        indice -= 1;
     }
 
 }
